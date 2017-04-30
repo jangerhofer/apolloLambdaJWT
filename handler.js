@@ -44,6 +44,7 @@ const resolvers = {
 	Query: {
 		sampleString: () => 'Hi there, query!',
 		getLoginToken: (_, {input}) => {
+			// Run a database query of some sort here then return a signed JWT with whatever information ("claims") you want to store.
 			if (input.username === 'administrator' && input.password === 'secretPassword') {
 				return jwt.sign({
 					username: 'administrator',
@@ -52,6 +53,7 @@ const resolvers = {
 					expiresIn: '30 days'
 				})
 			}
+			// Throw an error if you cannot find a user with the specified credentials, such that the client knows the login attempt failed.
 			throw new Error('Invalid credentials.')
 		},
 		authedQuery: (_, args, {token}) => {
