@@ -1,0 +1,34 @@
+service: jwtApolloDemo
+
+# Use the serverless-webpack plugin to transpile ES6
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+# Enable auto-packing of external modules
+custom:
+  webpackIncludeModules: true
+  stage: "${opt:stage, self:provider.stage}"
+  serverless-offline:
+    babelOptions:
+      presets: ['es2015', 'stage-0']
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  environment: ${file(env.yml):${self:custom.stage}}
+
+functions:
+  graphql:
+    handler: handler.graphql
+    events:
+      - http:
+          path: graphql
+          method: post
+          cors: true
+  graphiql:
+    handler: handler.graphiql
+    events:
+      - http:
+          path: graphiql
+          method: get
