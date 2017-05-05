@@ -45,9 +45,9 @@ const resolvers = {
 		sampleString: () => 'Hi there, query!',
 		getLoginToken: (_, {input}) => {
 			// Run a database query of some sort here then return a signed JWT with whatever information ("claims") you want to store.
-			if (input.username === 'administrator' && input.password === 'secretPassword') {
+			if (input.username === 'admin' && input.password === 'secret') {
 				return jwt.sign({
-					username: 'administrator',
+					username: 'admin',
 					isAdmin: true
 				}, process.env.JWT_SECRET, {
 					expiresIn: '30 days'

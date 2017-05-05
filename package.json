@@ -27,6 +27,8 @@
     "graphql-server-lambda": "^0.6.0",
     "graphql-tools": "^0.11.0",
     "jsonwebtoken": "^7.4.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "source-map-support": "^0.4.14"
   },
   "xo": {
